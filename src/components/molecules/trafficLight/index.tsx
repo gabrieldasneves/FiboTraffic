@@ -1,38 +1,35 @@
 import { useState } from "react";
 import "./styles.css";
+import { Light } from "../../atoms/Light";
 
 type TrafficLightStateType = "stopped" | "calculating" | "complete";
 
 export function TrafficLight() {
   const [state, setState] = useState<TrafficLightStateType>("stopped");
 
-  const handleClick = (newState: TrafficLightStateType) => {
-    setState(newState);
-  };
-
   return (
     <>
       <div className="container">
         <div className="trafficLight">
-          <div
-            className={`label red ${state === "stopped" ? "activeRed" : ""}`}
-            onClick={() => handleClick("stopped")}
-          ></div>
-          <div
-            className={`label yellow ${
-              state === "calculating" ? "activeYellow" : ""
-            }`}
-            onClick={() => handleClick("calculating")}
-          ></div>
+          <Light
+            color="red"
+            isActive={state === "stopped"}
+            onClick={() => setState("stopped")}
+          />
 
-          <div
-            className={`label green ${
-              state === "complete" ? "activeGreen" : ""
-            }`}
-            onClick={() => handleClick("complete")}
+          <Light
+            color="yellow"
+            isActive={state === "calculating"}
+            onClick={() => setState("calculating")}
+          />
+
+          <Light
+            color="green"
+            isActive={state === "complete"}
+            onClick={() => setState("complete")}
           >
             <span className="light-number">3</span>
-          </div>
+          </Light>
         </div>
       </div>
     </>

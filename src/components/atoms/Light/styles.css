@@ -1,0 +1,46 @@
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.label.green.activegreen {
+  background-color: lime;
+  box-shadow: 0 0 2em lime;
+}
+
+.label.yellow.activeyellow {
+  background-color: orange;
+  box-shadow: 0 0 2em orange;
+}
+
+.label.red.activered {
+  background-color: red;
+  box-shadow: 0 0 2em red;
+}
+
+.label.red {
+  background-color: #990000;
+}
+.label.red:hover {
+  background-color: red;
+}
+
+.label.yellow {
+  background-color: #999900;
+}
+.label.yellow:hover {
+  background-color: orange;
+}
+
+.label.green {
+  background-color: #009900;
+}
+.label.green:hover {
+  background-color: lime;
+}

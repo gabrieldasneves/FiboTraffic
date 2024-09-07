@@ -13,55 +13,7 @@
   border-radius: 8px;
 }
 
-.label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.input {
-  display: none;
-}
-
 .light-number {
   color: white;
   font-weight: bold;
-}
-
-.label.red {
-  background-color: #990000;
-}
-.label.red:hover {
-  background-color: red;
-}
-.label.red.activeRed {
-  background-color: red;
-  box-shadow: 0 0 2em red;
-}
-
-.label.yellow {
-  background-color: #999900;
-}
-.label.yellow:hover {
-  background-color: orange;
-}
-.label.yellow.activeYellow {
-  background-color: orange;
-  box-shadow: 0 0 2em orange;
-}
-
-.label.green {
-  background-color: #009900;
-}
-.label.green:hover {
-  background-color: lime;
-}
-.label.green.activeGreen {
-  background-color: lime;
-  box-shadow: 0 0 2em lime;
 }
