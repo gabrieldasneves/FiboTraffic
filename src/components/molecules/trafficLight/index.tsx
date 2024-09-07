@@ -9,15 +9,33 @@ export function TrafficLight() {
   const [state, setState] = useState<TrafficLightStateType>("stopped");
   const { result, isCalculating, fibonacciCalculation } = useFibonacci();
 
-  const stratFiboCalculation = (n: number) => {
-    console.log("clicou");
-    setState("calculating");
-    fibonacciCalculation(n);
-  };
+  useEffect(() => {
+    if (state === "stopped" && isCalculating) {
+      setTimeout(() => {
+        setState("calculating");
+      }, 1500);
+    }
+  }, [isCalculating, state]);
+
+  console.log(state);
 
   useEffect(() => {
-    if (!isCalculating && state === "calculating") {
-      setState("complete");
+    fibonacciCalculation(10);
+  }, [fibonacciCalculation]);
+
+  useEffect(() => {
+    if (state === "calculating" && !isCalculating) {
+      setTimeout(() => {
+        setState("complete");
+      }, 1500);
+    }
+  }, [isCalculating, state]);
+
+  useEffect(() => {
+    if (state === "complete") {
+      setTimeout(() => {
+        setState("stopped");
+      }, 1500);
     }
   }, [isCalculating, state]);
 
@@ -26,9 +44,7 @@ export function TrafficLight() {
       <div className="container">
         <div className="trafficLight">
           <Light color="red" isActive={state === "stopped"} />
-
           <Light color="yellow" isActive={state === "calculating"} />
-
           <Light color="green" isActive={state === "complete"}>
             {state === "complete" && (
               <span className="light-number">{result}</span>
@@ -36,9 +52,6 @@ export function TrafficLight() {
           </Light>
         </div>
       </div>
-      <button onClick={() => stratFiboCalculation(10)}>
-        Start Calculation
-      </button>
     </>
   );
 }

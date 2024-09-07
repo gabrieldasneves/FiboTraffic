@@ -15,7 +15,7 @@ export function useFibonacci() {
       const fibResult = fibonacci(n);
       setResult(fibResult);
       setIsCalculating(false);
-    }, 500);
+    }, 1500);
   };
 
   return { result, isCalculating, fibonacciCalculation };
