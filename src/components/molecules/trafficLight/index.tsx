@@ -8,37 +8,35 @@ type TrafficLightStateType = "stopped" | "calculating" | "complete";
 export function TrafficLight() {
   const [state, setState] = useState<TrafficLightStateType>("stopped");
   const { result, isCalculating, fibonacciCalculation } = useFibonacci();
+  const [counter, setCounter] = useState(1);
 
-  useEffect(() => {
-    if (state === "stopped" && isCalculating) {
-      setTimeout(() => {
+  const handleStateTransition = () => {
+    if (counter > 10) {
+      if (state === "stopped") {
         setState("calculating");
-      }, 1500);
-    }
-  }, [isCalculating, state]);
-
-  console.log(state);
-
-  useEffect(() => {
-    fibonacciCalculation(10);
-  }, [fibonacciCalculation]);
-
-  useEffect(() => {
-    if (state === "calculating" && !isCalculating) {
-      setTimeout(() => {
+      } else if (state === "calculating") {
         setState("complete");
-      }, 1500);
+      } else if (state === "complete") {
+        setState("stopped");
+      }
+      setCounter(1);
     }
-  }, [isCalculating, state]);
+  };
 
   useEffect(() => {
-    if (state === "complete") {
-      setTimeout(() => {
-        setState("stopped");
-      }, 1500);
-    }
-  }, [isCalculating, state]);
+    if (counter <= 10 && !isCalculating) {
+      const timer = setTimeout(() => {
+        fibonacciCalculation(counter);
+        setCounter((prevCounter) => prevCounter + 1);
+      }, 500);
 
+      return () => clearTimeout(timer);
+    } else {
+      handleStateTransition();
+    }
+  }, [counter, fibonacciCalculation]);
+
+  console.log(counter);
   return (
     <>
       <div className="container">
@@ -46,9 +44,7 @@ export function TrafficLight() {
           <Light color="red" isActive={state === "stopped"} />
           <Light color="yellow" isActive={state === "calculating"} />
           <Light color="green" isActive={state === "complete"}>
-            {state === "complete" && (
-              <span className="light-number">{result}</span>
-            )}
+            <span className="light-number">{result}</span>
           </Light>
         </div>
       </div>

@@ -11,11 +11,10 @@ export function useFibonacci() {
 
   const fibonacciCalculation = (n: number) => {
     setIsCalculating(true);
-    setTimeout(() => {
-      const fibResult = fibonacci(n);
-      setResult(fibResult);
-      setIsCalculating(false);
-    }, 1500);
+
+    const fibResult = fibonacci(n);
+    setResult(fibResult);
+    setIsCalculating(false);
   };
 
   return { result, isCalculating, fibonacciCalculation };
