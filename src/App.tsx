@@ -1,10 +1,10 @@
 import "./App.css";
-import { TrafficLight } from "./components/molecules/trafficLight";
+import { TrafficLightGroup } from "./components/organisms/trafficLightGroup";
 
 function App() {
   return (
     <>
-      <TrafficLight />
+      <TrafficLightGroup />
     </>
   );
 }
