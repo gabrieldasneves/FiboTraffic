@@ -1,15 +1,18 @@
 .header {
+  background: white
   color: white;
   display: flex;
   align-items: center;
-  width: 100vw;
+  max-width: 100vw;
   top: 0;
+  border-bottom: 1px solid black;
 }
 
 .logo-text {
   font-family: "Arial", sans-serif;
   font-size: 24px;
   font-weight: bold;
+
 }
 
 .logo {
@@ -17,10 +20,11 @@
   width: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .header {
     flex-direction: column;
     padding: 10px;
+
   }
 
   .logo-text {

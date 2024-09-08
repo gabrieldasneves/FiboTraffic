@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 24px;
+  width: 100px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 8px;
   margin: 5px;
 }
 

@@ -5,9 +5,7 @@ import { TrafficLightGroup } from "./components/organisms/trafficLightGroup";
 function App() {
   return (
     <>
-      <div className="header">
-        <Header />
-      </div>
+      <Header />
       <div className="body">
         <TrafficLightGroup />
       </div>
