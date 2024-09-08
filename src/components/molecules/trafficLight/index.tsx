@@ -40,7 +40,6 @@ export function TrafficLight({ startingPoint }: TrafficLightProps) {
     }
   }, [counter, fibonacciCalculation]);
 
-  console.log(counter);
   return (
     <>
       <div className="container">
