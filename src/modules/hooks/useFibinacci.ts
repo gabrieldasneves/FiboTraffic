@@ -6,7 +6,17 @@ export function useFibonacci() {
 
   const fibonacci = (n: number): number => {
     if (n <= 1) return n;
-    return fibonacci(n - 1) + fibonacci(n - 2);
+
+    let previousNumber = 0,
+      currentValue = 1,
+      pivot = 0;
+
+    for (let fibonacciIndex = 2; fibonacciIndex <= n; fibonacciIndex++) {
+      pivot = currentValue + previousNumber;
+      previousNumber = currentValue;
+      currentValue = pivot;
+    }
+    return currentValue;
   };
 
   const fibonacciCalculation = (n: number) => {
