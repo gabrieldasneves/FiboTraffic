@@ -3,15 +3,19 @@ import "./styles.css";
 import { Light } from "../../atoms/Light";
 import { useFibonacci } from "../../../modules/hooks/useFibinacci";
 
+type TrafficLightProps = {
+  startingPoint: number;
+};
+
 type TrafficLightStateType = "stopped" | "calculating" | "complete";
 
-export function TrafficLight() {
+export function TrafficLight({ startingPoint }: TrafficLightProps) {
   const [state, setState] = useState<TrafficLightStateType>("stopped");
   const { result, isCalculating, fibonacciCalculation } = useFibonacci();
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState<number>(startingPoint);
 
   const handleStateTransition = () => {
-    if (counter > 10) {
+    if (counter > startingPoint + 10) {
       if (state === "stopped") {
         setState("calculating");
       } else if (state === "calculating") {
@@ -19,12 +23,12 @@ export function TrafficLight() {
       } else if (state === "complete") {
         setState("stopped");
       }
-      setCounter(1);
+      setCounter(startingPoint);
     }
   };
 
   useEffect(() => {
-    if (counter <= 10 && !isCalculating) {
+    if (counter <= startingPoint + 10 && !isCalculating) {
       const timer = setTimeout(() => {
         fibonacciCalculation(counter);
         setCounter((prevCounter) => prevCounter + 1);
