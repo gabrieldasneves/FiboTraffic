@@ -1,10 +1,16 @@
 import "./App.css";
+import { Header } from "./components/molecules/header";
 import { TrafficLightGroup } from "./components/organisms/trafficLightGroup";
 
 function App() {
   return (
     <>
-      <TrafficLightGroup />
+      <div className="header">
+        <Header />
+      </div>
+      <div className="body">
+        <TrafficLightGroup />
+      </div>
     </>
   );
 }

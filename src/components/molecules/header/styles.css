@@ -1,0 +1,29 @@
+.header {
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  top: 0;
+}
+
+.logo-text {
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .logo-text {
+    margin-bottom: 10px;
+  }
+}

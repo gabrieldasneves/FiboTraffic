@@ -14,13 +14,13 @@
 }
 
 .label.yellow.activeyellow {
-  background-color: orange;
-  box-shadow: 0 0 2em orange;
+  background-color: #ffea00;
+  box-shadow: 0 0 2em #ffea00;
 }
 
 .label.red.activered {
-  background-color: red;
-  box-shadow: 0 0 2em red;
+  background-color: #ff3131;
+  box-shadow: 0 0 2em #ff3131;
 }
 
 .label.red {
