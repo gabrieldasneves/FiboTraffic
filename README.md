@@ -19,10 +19,10 @@ Node.js and npm installed on your machine.
 - Clone the repository
 - Navigate to the project directory: `cd FiboTraffic`
 - Install dependencies: `npm install`
-- Running the Application: `npm start`
+- Running the Application: `npm run dev`
 - Open your browser and go to http://localhost:5173/
 
-## Desing
+## Design
 
 ### Components directory tree structure
 
