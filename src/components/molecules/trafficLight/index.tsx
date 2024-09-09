@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
-import { Light } from "../../atoms/Light";
+import { Light } from "../../atoms/light";
 import { useFibonacci } from "../../../modules/hooks/useFibinacci";
 
 type TrafficLightProps = {
