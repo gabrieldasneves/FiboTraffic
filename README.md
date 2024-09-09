@@ -1,50 +1,119 @@
-# React + TypeScript + Vite
+# FiboTraffic
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React application that visualizes Fibonacci number calculations using traffic light components.
 
-Currently, two official plugins are available:
+## Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Traffic light component with three states: stopped, calculating, and complete.
+- Fibonacci calculation integrated into traffic light state transitions.
+- Each traffic light performs 10 Fibonacci calculations and cycles back to the stopped state.
+- Responsive design: traffic lights align horizontally and wrap to a new row if the screen is small.
+- Four traffic lights with different starting points for Fibonacci calculations.
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Node.js and npm installed on your machine.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Clone the repository
+- Navigate to the project directory: `cd FiboTraffic`
+- Install dependencies: `npm install`
+- Running the Application: `npm start`
+- Open your browser and go to http://localhost:5173/
+
+## Desing
+
+### Components directory tree structure
+
+It was choosen to follow an atomic design structure where:
+
+- Atoms: Small, reusable components.
+
+- Molecules: Slightly more complex components made of atoms.
+
+- Organisms: Groups of molecules to form complete sections.
+
+Therefore, our Component tree would look like:
+
+```
+components
+|__ atoms
+        |__light
+    molecules
+        |__button
+        |__header
+        |__trafficLight
+    organisms
+        |__trafficLightGroup
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Fibonacci calculation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+For the fibonacci calculation it was decided to create a custom hook (useFibonacci) so it can be used along the code.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+export function useFibonacci() {
+  const [result, setResult] = useState<number | null>(null);
+  const [isCalculating, setIsCalculating] = useState<boolean>(false);
+
+  const fibonacci = (n: number): number => {
+    if (n <= 1) return n;
+
+    let previousNumber = 0,
+      currentValue = 1,
+      pivot = 0;
+
+    for (let fibonacciIndex = 2; fibonacciIndex <= n; fibonacciIndex++) {
+      pivot = currentValue + previousNumber;
+      previousNumber = currentValue;
+      currentValue = pivot;
+    }
+    return currentValue;
+  };
+
+  const fibonacciCalculation = (n: number) => {
+    setIsCalculating(true);
+
+    const fibResult = fibonacci(n);
+    setResult(fibResult);
+    setIsCalculating(false);
+  };
+
+  return { result, isCalculating, fibonacciCalculation };
+}
+```
+
+### Optimization
+
+To optimize Fibonacci calculations for large numbers I've changed the implementation to a linear (O(n)) one:
+
+```
+const fibonacci = (n: number): number => {
+    if (n <= 1) return n;
+
+    let previousNumber = 0,
+      currentValue = 1,
+      pivot = 0;
+
+    for (let fibonacciIndex = 2; fibonacciIndex <= n; fibonacciIndex++) {
+      pivot = currentValue + previousNumber;
+      previousNumber = currentValue;
+      currentValue = pivot;
+    }
+    return currentValue;
+  };
+```
+
+The previous one is is exponential complexity (O(2^n)) that's a expensive implememntation for larger numbers
+
+```
+ function fibonacci(n) {
+       if (n <= 1) return n;
+       return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+```
+
+### Interface
+
+![alt text](./public/img/image.png)
